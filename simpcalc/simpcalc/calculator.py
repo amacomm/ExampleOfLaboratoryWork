@@ -3,6 +3,7 @@
 математических операций.
 '''
 import numpy as np
+import logging
 
 
 class Calculator:
@@ -11,7 +12,7 @@ class Calculator:
     основных математических операций.
     '''
     def __init__(self):
-        pass
+        self.__logger = logging.getLogger(__name__)
 
     def add(self,
             x1: int | float | np.ndarray,
@@ -26,6 +27,7 @@ class Calculator:
         Returns:
             Сумма двух аргументов.
         '''
+        self.__logger.debug(f"{x1} + {x2}")
         return x1 + x2
 
     def multiply(self,
@@ -41,6 +43,7 @@ class Calculator:
         Returns:
             Произведение двух аргументов.
         '''
+        self.__logger.debug(f"{x1} * {x2}")
         return x1 * x2
 
     def subtract(self,
@@ -56,6 +59,7 @@ class Calculator:
         Returns:
             Разность двух аргументов.
         '''
+        self.__logger.debug(f"{x1} - {x2}")
         return x1 - x2
 
     def divide(self,
@@ -72,10 +76,13 @@ class Calculator:
             Частное двух аргументов.
         '''
         if x2 != 0:
+            self.__logger.debug(f"{x1} / {x2}")
             return x1 / x2
         else:
-            raise ValueError("Аргумент справа от знака деления " +
-                             "не может быть равен нулю")
+            error = ValueError("Аргумент справа от знака деления " +
+                               "не может быть равен нулю")
+            self.__logger.warning(error)
+            raise error
 
 
 if __name__ == "__main__":
