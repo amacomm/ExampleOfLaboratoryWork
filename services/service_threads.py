@@ -26,7 +26,7 @@ class CancellationToken:
         self.__is_canceled = True
 
 
-class Service:
+class ServiceThreads:
     '''
     Класс простого сервиса.
     '''
